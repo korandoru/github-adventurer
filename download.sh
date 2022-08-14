@@ -31,4 +31,4 @@ ${CLICKHOUSE_BIN} client \
 | xargs -I{} bash -c "wget --continue 'https://data.gharchive.org/{}'"
 
 echo "Downloaded:"
-echo "$(ls ./gharchive/)"
+echo "$(ls *.json.gz)"
