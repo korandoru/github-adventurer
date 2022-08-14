@@ -51,15 +51,6 @@ jobs:
           curl https://clickhouse.com/ | sh
           mkdir -p $HOME/local/bin
           mv clickhouse $HOME/local/bin/
-      - run: |
-          echo ${CLICKHOUSE_BIN}
-          ${CLICKHOUSE_BIN} client --version
-          echo ${CLICKHOUSE_HOST}
-          echo ${CLICKHOUSE_PORT}
-          echo ${CLICKHOUSE_RO_USER}
-          echo ${CLICKHOUSE_RO_PASSWORD}
-          echo ${CLICKHOUSE_W_USER}
-          echo ${CLICKHOUSE_W_PASSWORD}
       - run: ./download.sh
       - run: ./flatten.sh
       - run: ./verify.sh
