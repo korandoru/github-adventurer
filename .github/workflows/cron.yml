@@ -44,3 +44,4 @@ jobs:
         echo ${CLICKHOUSE_W_PASSWORD}
       - run: ./download.sh
       - run: ./flatten.sh
+      - run: ./verify.sh

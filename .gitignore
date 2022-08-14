@@ -1,3 +1,4 @@
-.env
-
 *.json.gz
+
+.env
+output.txt

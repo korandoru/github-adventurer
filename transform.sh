@@ -73,4 +73,4 @@
     .payload.release?.tag_name? // null,
     .payload.release?.name? // null,
     .payload.review?.state? // null
-]" | ./upload.sh ) || ( echo "File $1 has issues" | tee output.txt )
+]" | ./upload.sh ) || ( echo "File $1 has issues" | tee -a output.txt )
