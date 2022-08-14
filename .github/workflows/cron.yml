@@ -26,7 +26,7 @@ jobs:
     name: GitHub Events Crawler
     runs-on: ubuntu-latest
     env:
-      CLICKHOUSE_BIN: ${{ secrets.CLICKHOUSE_BIN }}
+      CLICKHOUSE_BIN: $HOME/local/bin/clickhouse
       CLICKHOUSE_HOST: ${{ secrets.CLICKHOUSE_HOST }}
       CLICKHOUSE_PORT: ${{ secrets.CLICKHOUSE_PORT }}
       CLICKHOUSE_RO_USER: ${{ secrets.CLICKHOUSE_RO_USER }}
@@ -34,8 +34,24 @@ jobs:
       CLICKHOUSE_W_USER: ${{ secrets.CLICKHOUSE_W_USER }}
       CLICKHOUSE_W_PASSWORD: ${{ secrets.CLICKHOUSE_W_PASSWORD }}
     steps:
+      - name: Cache ClickHouse Binary
+        id: cache-clickhouse
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/local/bin/clickhouse
+          key: ${{ runner.os }}-clickhouse
+      - name: Checkout Code Base
+        uses: actions/checkout@v3
+      - name: Install ClickHouse
+        if: steps.cache-clickhouse.outputs.cache-hit != 'true'
+        run: |
+          curl https://clickhouse.com/ | sh
+          mkdir -p $HOME/local/bin
+          mv clickhouse $HOME/local/bin/
       - run: |
         echo ${CLICKHOUSE_BIN}
+        ${CLICKHOUSE_BIN} client --version
         echo ${CLICKHOUSE_HOST}
         echo ${CLICKHOUSE_PORT}
         echo ${CLICKHOUSE_RO_USER}
