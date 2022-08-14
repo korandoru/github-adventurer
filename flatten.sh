@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+set -o xtrace
+
 c=1
 case "${OSTYPE}" in
     darwin*)  c=$(sysctl -n hw.ncpu) ;; 

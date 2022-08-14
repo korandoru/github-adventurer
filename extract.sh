@@ -14,4 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+set -o xtrace
+
 ( gzip -cd $1 | ./transform.sh $1 ) || ( echo "File $1 has issues" | tee -a output.txt )

@@ -15,6 +15,7 @@
 # limitations under the License.
 
 set -o nounset
+set -o xtrace
 
 : "$CLICKHOUSE_BIN"
 : "$CLICKHOUSE_HOST"
